@@ -18,7 +18,7 @@ public class QuestRepositoryTest {
     private QuestRepository questRepository;
     @Test
     public void insertTest() {
-        IntStream.rangeClosed(1, 10).forEach(i -> {
+        IntStream.rangeClosed(1, 5).forEach(i -> {
             Quest newQuest = Quest.builder()
                     .title("repoInsertTest" + i)
                     .user("user" + i)

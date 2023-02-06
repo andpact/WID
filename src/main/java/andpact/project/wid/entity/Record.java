@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @NoArgsConstructor
@@ -11,26 +12,32 @@ import java.time.LocalDate;
 @Builder
 @Getter
 @ToString
-public class Quest {
+public class Record {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long qno;
+    private Long rno;
     @Column(length = 20, nullable = false)
     private String user;
+    @Column(nullable = false)
+    private LocalDate date;
     @Column(length = 20, nullable = false)
     private String title;
     @Column(nullable = false)
-    private LocalDate dueDate;
+    private LocalTime start;
     @Column(nullable = false)
-    private boolean finished;
+    private LocalTime finish;
 
+//    @Column(nullable = true)
+//    private int degree;
+
+//    private boolean complete = false;
     public void changeTitle(String newTitle) {
         this.title = newTitle;
     }
-    public void changeDueDate(LocalDate newDueDate) {
-        this.dueDate = newDueDate;
+    public void changeStart(LocalTime newStart) {
+        this.start = newStart;
     }
-    public void changeFinished(boolean finished) {
-        this.finished = finished;
+    public void changeFinish(LocalTime newFinish) {
+        this.finish = newFinish;
     }
 }

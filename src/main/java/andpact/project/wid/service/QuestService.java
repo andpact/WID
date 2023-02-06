@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 @Log4j2
 @RequiredArgsConstructor
 public class QuestService {
-
     private final ModelMapper modelMapper;
     private final QuestRepository questRepository;
 
@@ -33,8 +32,8 @@ public class QuestService {
     }
     public List<QuestDTO> readAll() {
         List<Quest> questList = questRepository.findAll();
-        List<QuestDTO> dtoList = questList.stream().map(quest -> modelMapper.map(quest, QuestDTO.class)).collect(Collectors.toList());
-        return dtoList;
+        List<QuestDTO> questDTOList = questList.stream().map(quest -> modelMapper.map(quest, QuestDTO.class)).collect(Collectors.toList());
+        return questDTOList;
     }
     public void update(QuestDTO questDTO) {
         Optional<Quest> result = questRepository.findById(questDTO.getQno());

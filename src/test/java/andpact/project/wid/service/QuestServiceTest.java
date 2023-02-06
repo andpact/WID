@@ -13,16 +13,15 @@ import java.util.stream.IntStream;
 @SpringBootTest
 @Log4j2
 public class QuestServiceTest {
-
     @Autowired
     private QuestService questService;
 
     @Test
     public void createTest() {
-        IntStream.rangeClosed(1, 10).forEach(i -> {
+        IntStream.rangeClosed(1, 5).forEach(i -> {
             QuestDTO newQuestDTO = QuestDTO.builder()
-                    .title("serCreateTest" + i)
                     .user("user" + i)
+                    .title("serCreateTest" + i)
                     .dueDate(LocalDate.of(2022, (i % 12) + 1, (i % 30) + 1))
                     .finished(false)
                     .build();

@@ -22,23 +22,24 @@ public class QuestController {
         Long qno = questService.create(newQuestDTO);
         return qno;
     }
-    @GetMapping(value = "/{qno}")
+    @GetMapping(value = "/{qno}", produces = MediaType.APPLICATION_JSON_VALUE)
     public QuestDTO read(@PathVariable(value = "qno") Long qno) {
         log.info("read qno:" + qno);
         QuestDTO questDTO = questService.read(qno);
+        log.info(questDTO);
         return questDTO;
     }
     @GetMapping(value = "/list", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<QuestDTO> readAll() {
-        List<QuestDTO> list = questService.readAll();
-        return list;
+        List<QuestDTO> questDTOList = questService.readAll();
+        return questDTOList;
     }
     @PutMapping(value = "/{qno}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void update(@PathVariable(value = "qno") Long qno, @RequestBody QuestDTO questDTO) {
         questDTO.setQno(qno);
         questService.update(questDTO);
     }
-    @DeleteMapping(value = "{qno}")
+    @DeleteMapping(value = "/{qno}")
     public void delete(@PathVariable(value = "qno") Long qno) {
         questService.delete(qno);
     }

@@ -17,7 +17,7 @@ public class QuestControllerTest {
 
     @Test
     public void createTest() {
-        IntStream.rangeClosed(1, 10).forEach(i -> {
+        IntStream.rangeClosed(1, 5).forEach(i -> {
             QuestDTO newQuestDTO = QuestDTO.builder()
                     .title("conCreateTest" + i)
                     .user("user" + i)
