@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @NoArgsConstructor
@@ -17,20 +18,29 @@ public class Quest {
     private Long qno;
     @Column(length = 20, nullable = false)
     private String user;
+    @Column(nullable = false)
+    private LocalDate date;
+    @Column(length = 20, nullable = false)
+    private String category;
     @Column(length = 20, nullable = false)
     private String title;
     @Column(nullable = false)
-    private LocalDate dueDate;
+    private LocalTime start;
     @Column(nullable = false)
-    private boolean finished;
+    private LocalTime finish;
+    @Column(nullable = false)
+    private int degree;
 
     public void changeTitle(String newTitle) {
         this.title = newTitle;
     }
-    public void changeDueDate(LocalDate newDueDate) {
-        this.dueDate = newDueDate;
+    public void changeStart(LocalTime newStart) {
+        this.start = newStart;
     }
-    public void changeFinished(boolean finished) {
-        this.finished = finished;
+    public void changeFinish(LocalTime newFinish) {
+        this.finish = newFinish;
+    }
+    public void changeDegree(int newDegree) {
+        this.degree = newDegree;
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -21,16 +22,19 @@ public class QuestServiceTest {
         IntStream.rangeClosed(1, 5).forEach(i -> {
             QuestDTO newQuestDTO = QuestDTO.builder()
                     .user("user" + i)
+                    .date(LocalDate.now())
+                    .category("serCreateTest" + i)
                     .title("serCreateTest" + i)
-                    .dueDate(LocalDate.of(2022, (i % 12) + 1, (i % 30) + 1))
-                    .finished(false)
+                    .start(LocalTime.now())
+                    .finish(LocalTime.now())
+                    .degree(0)
                     .build();
             questService.create(newQuestDTO);
         });
     }
     @Test
     public void readTest() {
-        Long qno = 14L;
+        Long qno = 38L;
         QuestDTO questDTO = questService.read(qno);
         log.info(questDTO);
     }
@@ -40,11 +44,12 @@ public class QuestServiceTest {
     }
     @Test
     public void updateTest() {
-        Long qno = 14L;
+        Long qno = 38L;
         QuestDTO questDTO = questService.read(qno);
         questDTO.setTitle("serUpdateTest");
-        questDTO.setDueDate(LocalDate.now());
-        questDTO.setFinished(true);
+        questDTO.setStart(LocalTime.now());
+        questDTO.setFinish(LocalTime.now());
+        questDTO.setDegree(100);
         questService.update(questDTO);
         log.info(questDTO);
     }

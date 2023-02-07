@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @Builder
@@ -16,8 +17,13 @@ public class QuestDTO {
 
     private Long qno;
     private String user;
-    private String title;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMdd", timezone = "Asia/Seoul")
-    private LocalDate dueDate;
-    private boolean finished;
+    private LocalDate date;
+    private String category;
+    private String title;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HHmm", timezone = "Asia/Seoul")
+    private LocalTime start;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HHmm", timezone = "Asia/Seoul")
+    private LocalTime finish;
+    private int degree;
 }

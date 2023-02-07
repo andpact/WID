@@ -39,8 +39,9 @@ public class QuestService {
         Optional<Quest> result = questRepository.findById(questDTO.getQno());
         Quest quest = result.orElseThrow();
         quest.changeTitle(questDTO.getTitle());
-        quest.changeDueDate(questDTO.getDueDate());
-        quest.changeFinished(questDTO.isFinished());
+        quest.changeStart(questDTO.getStart());
+        quest.changeFinish(questDTO.getFinish());
+        quest.changeDegree(questDTO.getDegree());
         questRepository.save(quest);
     }
     public void delete(Long qno) {
