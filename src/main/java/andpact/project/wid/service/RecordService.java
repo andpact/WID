@@ -1,7 +1,7 @@
 package andpact.project.wid.service;
 
 import andpact.project.wid.dto.RecordDTO;
-import andpact.project.wid.entity.Record;
+import andpact.project.wid.domain.Record;
 import andpact.project.wid.repository.RecordRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

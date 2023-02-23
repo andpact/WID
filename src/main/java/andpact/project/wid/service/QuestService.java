@@ -1,7 +1,7 @@
 package andpact.project.wid.service;
 
 import andpact.project.wid.dto.QuestDTO;
-import andpact.project.wid.entity.Quest;
+import andpact.project.wid.domain.Quest;
 import andpact.project.wid.repository.QuestRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

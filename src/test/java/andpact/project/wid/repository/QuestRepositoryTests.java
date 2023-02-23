@@ -1,6 +1,6 @@
 package andpact.project.wid.repository;
 
-import andpact.project.wid.entity.Quest;
+import andpact.project.wid.domain.Quest;
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 
 @SpringBootTest
 @Log4j2
-public class QuestRepositoryTest {
+public class QuestRepositoryTests {
     @Autowired
     private QuestRepository questRepository;
     @Test

@@ -1,4 +1,4 @@
-package andpact.project.wid.controller;
+package andpact.project.wid.service;
 
 import andpact.project.wid.dto.QuestDTO;
 import lombok.extern.log4j.Log4j2;
@@ -8,13 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest
 @Log4j2
-public class QuestControllerTest {
+public class QuestServiceTests {
     @Autowired
-    private QuestController questController;
+    private QuestService questService;
 
     @Test
     public void createTest() {
@@ -22,39 +23,39 @@ public class QuestControllerTest {
             QuestDTO newQuestDTO = QuestDTO.builder()
                     .user("user" + i)
                     .date(LocalDate.now())
-                    .category("conCreateTest" + i)
-                    .title("conCreateTest" + i)
+                    .category("serCreateTest" + i)
+                    .title("serCreateTest" + i)
                     .start(LocalTime.now())
                     .finish(LocalTime.now())
                     .degree(0)
                     .build();
-            questController.create(newQuestDTO);
+            questService.create(newQuestDTO);
         });
     }
     @Test
     public void readTest() {
         Long qno = 38L;
-        QuestDTO questDTO = questController.read(qno);
+        QuestDTO questDTO = questService.read(qno);
         log.info(questDTO);
     }
     @Test
     public void readAllTest() {
-        questController.readAll();
+        List<QuestDTO> questDTOList = questService.readAll();
     }
     @Test
     public void updateTest() {
         Long qno = 38L;
-        QuestDTO questDTO = questController.read(qno);
-        questDTO.setTitle("conUpdateTest");
+        QuestDTO questDTO = questService.read(qno);
+        questDTO.setTitle("serUpdateTest");
         questDTO.setStart(LocalTime.now());
         questDTO.setFinish(LocalTime.now());
         questDTO.setDegree(100);
-        questController.update(qno, questDTO);
+        questService.update(questDTO);
         log.info(questDTO);
     }
     @Test
     public void deleteTest() {
         Long qno = 14L;
-        questController.delete(qno);
+        questService.delete(qno);
     }
 }

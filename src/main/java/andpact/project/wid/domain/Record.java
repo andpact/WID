@@ -1,4 +1,4 @@
-package andpact.project.wid.entity;
+package andpact.project.wid.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
