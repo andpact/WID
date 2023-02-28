@@ -33,7 +33,7 @@ public class LoginFilter extends AbstractAuthenticationProcessingFilter {
         log.info(jsonData);
 
         UsernamePasswordAuthenticationToken authenticationToken
-                = new UsernamePasswordAuthenticationToken(jsonData.get("userID"), jsonData.get("userPW"));
+                = new UsernamePasswordAuthenticationToken(jsonData.get("mID"), jsonData.get("mPW"));
         return getAuthenticationManager().authenticate(authenticationToken); // AuthenticationManager가 CustomUserDetailsService 실행
     }
     private Map<String, String> parseRequestJSON(HttpServletRequest request) {

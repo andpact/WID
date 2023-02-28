@@ -17,7 +17,7 @@ public class Quest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long qno;
     @Column(length = 20, nullable = false)
-    private String user;
+    private String member;
     @Column(nullable = false)
     private LocalDate date;
     @Column(length = 20, nullable = false)

@@ -29,7 +29,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         log.info("Authentication :" + authentication);
         log.info("Authentication name :" + authentication.getName());
 
-        Map<String, Object> claim = Map.of("userID", authentication.getName());
+        Map<String, Object> claim = Map.of("mID", authentication.getName());
 
         String accessToken = jwtUtil.generateToken(claim, 1);
         String refreshToken = jwtUtil.generateToken(claim, 30);

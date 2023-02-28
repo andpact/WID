@@ -9,15 +9,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @SpringBootTest
 @Log4j2
-public class UserServiceTests {
+public class UserDetailsServiceTests {
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
     @Test
     public void readTest() {
-        String mid = "TestUser1";
-        UserDetails apiUserDTO = customUserDetailsService.loadUserByUsername(mid);
-        log.info(apiUserDTO);
+        String mID = "TestMember1";
+        UserDetails userDetails = customUserDetailsService.loadUserByUsername(mID);
+        log.info(userDetails);
     }
 }

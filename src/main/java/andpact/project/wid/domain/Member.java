@@ -15,21 +15,21 @@ import java.util.Set;
 @Builder
 @Getter
 @ToString
-public class User {
+public class Member {
     @Id
-    private String userID;
-    private String userPW;
+    private String mID;
+    private String mPW;
 
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
-    private Set<UserRole> roleSet = new HashSet<>();
+    private Set<MemberRole> roleSet = new HashSet<>();
 
-    public void changePw(String newUserPW) {
-        this.userPW = newUserPW;
+    public void changePw(String newMPW) {
+        this.mPW = newMPW;
     }
 
-    public void addRole(UserRole userRole) {
-        this.roleSet.add(userRole);
+    public void addRole(MemberRole memberRole) {
+        this.roleSet.add(memberRole);
     }
 
     public void clearRole() {

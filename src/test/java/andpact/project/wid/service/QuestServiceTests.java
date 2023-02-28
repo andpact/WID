@@ -19,22 +19,22 @@ public class QuestServiceTests {
 
     @Test
     public void createTest() {
-        IntStream.rangeClosed(1, 5).forEach(i -> {
+        IntStream.rangeClosed(1, 3).forEach(i -> {
             QuestDTO newQuestDTO = QuestDTO.builder()
-                    .user("user" + i)
+                    .member("member" + i)
                     .date(LocalDate.now())
                     .category("serCreateTest" + i)
                     .title("serCreateTest" + i)
                     .start(LocalTime.now())
                     .finish(LocalTime.now())
-                    .degree(0)
+//                    .degree(0)
                     .build();
             questService.create(newQuestDTO);
         });
     }
     @Test
     public void readTest() {
-        Long qno = 38L;
+        Long qno = 68L;
         QuestDTO questDTO = questService.read(qno);
         log.info(questDTO);
     }

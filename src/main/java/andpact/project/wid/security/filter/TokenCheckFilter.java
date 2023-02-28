@@ -39,9 +39,9 @@ public class TokenCheckFilter extends OncePerRequestFilter {
 
         try {
             Map<String, Object> payload = validateAccessToken(request);
-            String userID = (String)payload.get("userID");
-            log.info("UserID:" + userID);
-            UserDetails userDetails = customUserDetailsService.loadUserByUsername(userID);
+            String mID = (String)payload.get("mID");
+            log.info("mID:" + mID);
+            UserDetails userDetails = customUserDetailsService.loadUserByUsername(mID);
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);

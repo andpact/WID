@@ -21,7 +21,7 @@ public class QuestRepositoryTests {
     public void insertTest() {
         IntStream.rangeClosed(1, 5).forEach(i -> {
             Quest newQuest = Quest.builder()
-                    .user("user" + i)
+                    .member("user" + i)
                     .date(LocalDate.now())
                     .category("repoInsertTest" + i)
                     .title("repoInsertTest" + i)

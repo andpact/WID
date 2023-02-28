@@ -10,12 +10,12 @@ import java.util.Collection;
 @Setter
 @ToString
 public class UserSecurityDTO extends User { // 인증(로그인)을 위한 DTO
-    private String userID;
-    private String userPW;
+    private String mID;
+    private String mPW;
 
     public UserSecurityDTO(String username, String password, Collection<GrantedAuthority> authorities) {
         super(username, password, authorities);
-        this.userID = username;
-        this.userPW = password;
+        this.mID = username;
+        this.mPW = password;
     }
 }

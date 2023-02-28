@@ -1,5 +1,5 @@
 package andpact.project.wid.domain;
 
-public enum UserRole {
+public enum MemberRole {
     USER, ADMIN;
 }

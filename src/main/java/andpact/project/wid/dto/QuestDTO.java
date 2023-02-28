@@ -21,7 +21,7 @@ public class QuestDTO {
 
     private Long qno;
     @NotEmpty
-    private String user;
+    private String member;
     @NotEmpty
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyyMMdd", timezone = "Asia/Seoul")
     private LocalDate date;

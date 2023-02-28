@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO { // 회원가입을 위한 DTO
-    private String userID;
-    private String userPW;
+public class MemberDTO { // 회원가입을 위한 DTO
+    private String mID;
+    private String mPW;
 }

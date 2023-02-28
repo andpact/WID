@@ -20,7 +20,7 @@ public class QuestControllerTests {
     public void createTest() {
         IntStream.rangeClosed(1, 3).forEach(i -> {
             QuestDTO newQuestDTO = QuestDTO.builder()
-                    .user("user" + i)
+                    .member("member" + i)
                     .date(LocalDate.now())
                     .category("conCreateTest" + i)
                     .title("conCreateTest" + i)
@@ -33,7 +33,7 @@ public class QuestControllerTests {
     }
     @Test
     public void readTest() {
-        Long qno = 38L;
+        Long qno = 68L;
         QuestDTO questDTO = questController.read(qno);
         log.info(questDTO);
     }
@@ -43,7 +43,7 @@ public class QuestControllerTests {
     }
     @Test
     public void updateTest() {
-        Long qno = 38L;
+        Long qno = 68L;
         QuestDTO questDTO = questController.read(qno);
         questDTO.setTitle("conUpdateTest");
         questDTO.setStart(LocalTime.now());
