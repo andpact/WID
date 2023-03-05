@@ -17,13 +17,15 @@ public class Quest {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long qno;
     @Column(length = 20, nullable = false)
-    private String member;
+    private String mID;
     @Column(nullable = false)
     private LocalDate date;
     @Column(length = 20, nullable = false)
     private String category;
     @Column(length = 20, nullable = false)
     private String title;
+    @Column
+    private String description;
     @Column(nullable = false)
     private LocalTime start;
     @Column(nullable = false)
@@ -33,6 +35,9 @@ public class Quest {
 
     public void changeTitle(String newTitle) {
         this.title = newTitle;
+    }
+    public void changeDescription(String newDescription) {
+        this.description = newDescription;
     }
     public void changeStart(LocalTime newStart) {
         this.start = newStart;

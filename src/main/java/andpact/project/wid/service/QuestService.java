@@ -8,6 +8,7 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,15 +31,27 @@ public class QuestService {
         QuestDTO questDTO = modelMapper.map(quest, QuestDTO.class);
         return questDTO;
     }
-    public List<QuestDTO> readAll() {
-        List<Quest> questList = questRepository.findAll();
-        List<QuestDTO> questDTOList = questList.stream().map(quest -> modelMapper.map(quest, QuestDTO.class)).collect(Collectors.toList());
+
+    public List<QuestDTO> readAllByDateAndMID(LocalDate date, String mID) {
+        List<Quest> questList = questRepository.findAllByDateAndMID(date, mID);
+        List<QuestDTO> questDTOList = questList.stream()
+                .map(quest -> modelMapper.map(quest, QuestDTO.class))
+                .collect(Collectors.toList());
+        return questDTOList;
+    }
+
+    public List<QuestDTO> readAllByMID(String mID) {
+        List<Quest> questList = questRepository.findAllByMID(mID);
+        List<QuestDTO> questDTOList = questList.stream()
+                .map(quest -> modelMapper.map(quest, QuestDTO.class))
+                .collect(Collectors.toList());
         return questDTOList;
     }
     public void update(QuestDTO questDTO) {
         Optional<Quest> result = questRepository.findById(questDTO.getQno());
         Quest quest = result.orElseThrow();
         quest.changeTitle(questDTO.getTitle());
+        quest.changeDescription(questDTO.getDescription());
         quest.changeStart(questDTO.getStart());
         quest.changeFinish(questDTO.getFinish());
         quest.changeDegree(questDTO.getDegree());

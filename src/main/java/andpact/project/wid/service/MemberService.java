@@ -19,27 +19,18 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public void create(MemberDTO memberDTO) {
+    public void create(MemberDTO newMemberDTO) {
         log.info("----------Member Service----------");
-        String mID = memberDTO.getMID();
+        String mID = newMemberDTO.getMID();
         if (memberRepository.existsById(mID)) {
             log.info("mID is existed");
             return;
         }
-        Member newMember = modelMapper.map(memberDTO, Member.class);
-        newMember.changePw(passwordEncoder.encode(memberDTO.getMPW()));
+        Member newMember = modelMapper.map(newMemberDTO, Member.class);
+        newMember.changePw(passwordEncoder.encode(newMemberDTO.getMPW()));
         newMember.addRole(MemberRole.USER);
         log.info("new Member:" + newMember);
         log.info("new Member Role:" + newMember.getRoleSet());
         memberRepository.save(newMember);
     }
-//    public void read() {
-//
-//    }
-//    public void update() {
-//
-//    }
-//    public void delete() {
-//
-//    }
 }

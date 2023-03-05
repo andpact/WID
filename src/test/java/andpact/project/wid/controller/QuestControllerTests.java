@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -20,10 +21,11 @@ public class QuestControllerTests {
     public void createTest() {
         IntStream.rangeClosed(1, 3).forEach(i -> {
             QuestDTO newQuestDTO = QuestDTO.builder()
-                    .member("member" + i)
+                    .mID("member" + i)
                     .date(LocalDate.now())
                     .category("conCreateTest" + i)
                     .title("conCreateTest" + i)
+                    .description("conCreateTest" + i)
                     .start(LocalTime.now())
                     .finish(LocalTime.now())
 //                    .degree(0)
@@ -33,19 +35,28 @@ public class QuestControllerTests {
     }
     @Test
     public void readTest() {
-        Long qno = 68L;
+        Long qno = 88L;
         QuestDTO questDTO = questController.read(qno);
         log.info(questDTO);
     }
+
     @Test
-    public void readAllTest() {
-        questController.readAll();
+    public void readAllByDateAndMIDTest() {
+        String strDate = "2023-03-04";
+        List<QuestDTO> questDTOList = questController.readAllByDateAndMID(strDate);
+        log.info(questDTOList);
+    }
+    @Test
+    public void readAllByMIDTest() {
+        List<QuestDTO> questDTOList = questController.readAllByMID();
+        log.info(questDTOList);
     }
     @Test
     public void updateTest() {
-        Long qno = 68L;
+        Long qno = 88L;
         QuestDTO questDTO = questController.read(qno);
         questDTO.setTitle("conUpdateTest");
+        questDTO.setDescription("conUpdateTest");
         questDTO.setStart(LocalTime.now());
         questDTO.setFinish(LocalTime.now());
         questDTO.setDegree(100);

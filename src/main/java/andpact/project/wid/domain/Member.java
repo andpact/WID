@@ -19,6 +19,7 @@ public class Member {
     @Id
     private String mID;
     private String mPW;
+    private String email;
 
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
@@ -26,6 +27,9 @@ public class Member {
 
     public void changePw(String newMPW) {
         this.mPW = newMPW;
+    }
+    public void changeEmail(String newEmail) {
+        this.email = newEmail;
     }
 
     public void addRole(MemberRole memberRole) {

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -21,10 +22,11 @@ public class QuestRepositoryTests {
     public void insertTest() {
         IntStream.rangeClosed(1, 5).forEach(i -> {
             Quest newQuest = Quest.builder()
-                    .member("user" + i)
+                    .mID("member" + i)
                     .date(LocalDate.now())
                     .category("repoInsertTest" + i)
                     .title("repoInsertTest" + i)
+                    .description("repoInsertTest" + i)
                     .start(LocalTime.now())
                     .finish(LocalTime.now())
                     .degree(0)
@@ -34,21 +36,33 @@ public class QuestRepositoryTests {
     }
     @Test
     public void selectTest() {
-        Long qno = 2L;
+        Long qno = 87L;
         Optional<Quest> result = questRepository.findById(qno);
         Quest quest = result.orElseThrow();
         log.info(quest);
     }
+
     @Test
-    public void selectAllTest() {
-        List<Quest> questList = questRepository.findAll();
+    public void selectAllByDateTest() {
+        LocalDate date = LocalDate.of(2023, 3, 4);
+        String mID = "member1";
+        List<Quest> list = questRepository.findAllByDateAndMID(date, mID);
+        log.info(list);
+    }
+
+    @Test
+    public void selectAllByMIDTest() {
+        String mID = "member1";
+        List<Quest> questList = questRepository.findAllByMID(mID);
+        log.info(questList);
     }
     @Test
     public void updateTest() {
-        Long qno = 38L;
+        Long qno = 88L;
         Optional<Quest> result = questRepository.findById(qno);
         Quest quest = result.orElseThrow();
         quest.changeTitle("repoUpdateTest");
+        quest.changeDescription("repoUpdateTest");
         quest.changeStart(LocalTime.now());
         quest.changeFinish(LocalTime.now());
         quest.changeDegree(100);

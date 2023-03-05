@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Join</title>
+</head>
+<body>
+<form name="form1">
+    <input type="text" name="mID">
+    <input type="password" name="mPW">
+    <input type="email" name="email">
+    <input type="button" class="btn1" value="Join">
+</form>
+
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+
+    document.querySelector(".btn1").addEventListener("click", () => {
+
+        console.log("clicked")
+
+        const joinInfo = {mID:document.form1.mID.value, mPW:document.form1.mPW.value, email:document.form1.email.value}
+        // const joinInfo = {mID : "member2", mPW : "2222", email : "member2@gmail.com"}
+        console.log(joinInfo)
+
+        axios.post("http://localhost:8080/join", {mID : 'member2', mPW : '2222', email : "member2@gmail.com"})
+        // axios.post("http://localhost:8080/join", joinInfo)
+
+    })
+
+</script>
+</html>

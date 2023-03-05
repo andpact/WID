@@ -16,10 +16,11 @@ public class MemberControllerTests {
 
     @Test
     public void createTest() {
-        IntStream.rangeClosed(1, 10).forEach(i -> {
+        IntStream.rangeClosed(1, 1).forEach(i -> {
             MemberDTO newMemberDTO = MemberDTO.builder()
-                    .mID("TestMember" + i)
+                    .mID("NewMember00" + i)
                     .mPW("1111")
+                    .email("example@gmail.com")
                     .build();
             memberController.join(newMemberDTO);
         });

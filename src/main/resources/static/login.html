@@ -2,28 +2,82 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
 </head>
 <body>
-
-<button class="btn1">generateToken</button>
+<form name="form1">
+    <input type="text" name="mID">
+    <input type="password" name="mPW">
+    <input class="btn1" type="button" value="Login">
+</form>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
 
-    document.querySelector(".btn1").addEventListener("click",()=> {
+    document.querySelector(".btn1").addEventListener("click", () => {
 
-        const data = {userID:"TestUser1", userPW:"1111"}
+        const loginInfo = {mID:document.form1.mID.value, mPW:document.form1.mPW.value}
 
-        axios.post("http://localhost:8080/generateToken", data).then(res => {
+        axios.post("http://localhost:8080/generateToken", loginInfo).then(res => {
             const accessToken = res.data.accessToken
             const refreshToken = res.data.refreshToken
 
             localStorage.setItem("accessToken", accessToken)
             localStorage.setItem("refreshToken", refreshToken)
+
+            callServer().then(result => {
+                console.log(result)
+            }).catch(error => {
+                alert(error)
+            })
+
         })
 
+
+
     }, false)
+
+    const callServer = async() => {
+        console.log("call server 1...")
+
+        const accessToken = localStorage.getItem("accessToken")
+
+        if (!accessToken) {
+            throw 'Cannot Find Access Token'
+        }
+
+        const authHeader = {"Authorization": `Bearer ${accessToken}`}
+        try {
+            const res = await axios.get("http://localhost:8080/quest/list",
+                {headers: authHeader})
+            return res.data
+        } catch(err) {
+
+            if (err.response.data.msg === 'Expired Token') {
+                console.log("Refresh Your Token")
+
+                try{
+                    await callRefresh()
+                    console.log("new tokens....saved..")
+                    return callServer()
+
+                } catch(refreshErr) {
+                    throw refreshErr.response.data.msg
+                }
+            }//end if
+        }
+    }
+
+    const callRefresh = async () => {
+
+        const accessToken = localStorage.getItem("accessToken")
+        const refreshToken = localStorage.getItem("refreshToken")
+
+        const tokens = {accessToken, refreshToken}
+        const res = await axios.post("http://localhost:8080/refreshToken", tokens)
+        localStorage.setItem("accessToken", res.data.accessToken)
+        localStorage.setItem("refreshToken", res.data.refreshToken)
+    }
 </script>
 
 </body>
