@@ -18,7 +18,7 @@ public class MemberControllerTests {
     public void createTest() {
         IntStream.rangeClosed(1, 1).forEach(i -> {
             MemberDTO newMemberDTO = MemberDTO.builder()
-                    .mID("NewMember00" + i)
+                    .mID("Newone" + i)
                     .mPW("1111")
                     .email("example@gmail.com")
                     .build();

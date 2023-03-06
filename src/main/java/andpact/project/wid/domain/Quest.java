@@ -12,7 +12,7 @@ import java.time.LocalTime;
 @Builder
 @Getter
 @ToString
-public class Quest {
+public class Quest extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long qno;

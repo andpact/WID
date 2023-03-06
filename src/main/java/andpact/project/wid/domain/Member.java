@@ -15,7 +15,7 @@ import java.util.Set;
 @Builder
 @Getter
 @ToString
-public class Member {
+public class Member extends BaseEntity {
     @Id
     private String mID;
     private String mPW;
