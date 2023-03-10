@@ -17,7 +17,7 @@ public class MemberController {
     private final MemberService memberService;
 
 
-    @PostMapping(value = "/join", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/join")
     public String join(@RequestBody MemberDTO newMemberDTO) {
         // front에서 넘어온 정보가 DTO로 변환이 안된다.
         log.info("join:" + newMemberDTO);

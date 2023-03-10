@@ -48,8 +48,7 @@
 
         const authHeader = {"Authorization": `Bearer ${accessToken}`}
         try {
-            const res = await axios.get("http://localhost:8080/quest/list",
-                {headers: authHeader})
+            const res = await axios.get("http://localhost:8080/quest/list", {headers: authHeader})
             return res.data
         } catch(err) {
 

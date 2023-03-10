@@ -24,8 +24,10 @@
         // const joinInfo = {mID : "member2", mPW : "2222", email : "member2@gmail.com"}
         console.log(joinInfo)
 
-        axios.post("http://localhost:8080/join", {mID : 'member2', mPW : '2222', email : "member2@gmail.com"})
-        // axios.post("http://localhost:8080/join", joinInfo)
+        // axios.post("http://localhost:8080/join", {mID : 'member2', mPW : '2222', email : "member2@gmail.com"})
+        axios.post("http://localhost:8080/join", joinInfo).then(res => {
+            console.log(res)
+        })
 
     })
 
